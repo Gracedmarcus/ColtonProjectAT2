@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Updated 19 Oct by Joshua T
+
 public class Interactables : MonoBehaviour
 {
     public List<GameObject> list;

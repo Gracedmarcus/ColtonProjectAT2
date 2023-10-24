@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Updated 19 Oct by Joshua T
+
 public class Interact : MonoBehaviour
 {
     private Camera cam;

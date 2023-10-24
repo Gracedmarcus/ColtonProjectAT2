@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Updated 10 oct by Joshua T
+
 public class Movement : MonoBehaviour
 {
     private float horizontal, vertical;
