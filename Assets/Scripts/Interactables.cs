@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class Interactables : MonoBehaviour
 {
     public List<GameObject> list;
-    public Text goal, goal1, goal2, goal3;
+    public Text goal;
     public GameObject goalObj;
     private int i;
     private Camera cam;
@@ -20,9 +20,6 @@ public class Interactables : MonoBehaviour
     {
         cam = Camera.main;
         audioSource = GetComponent<AudioSource>();
-        goal1.text = "Find Bed";
-        goal2.text = "Find Toilet";
-        goal3.text = "Find Table";
         goalObj.gameObject.SetActive(false);
     }
 
@@ -60,7 +57,7 @@ public class Interactables : MonoBehaviour
 
     IEnumerator Enumerator()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         goalObj.gameObject.SetActive(false);
     }
 
@@ -86,23 +83,23 @@ public class Interactables : MonoBehaviour
         {
             case 0:
                 {
-                    goal.text = "This is a bed. You do lazy business on it.";
+                    goal.text = "Your dog could sleep on it.";
                     audioSource.PlayOneShot(bedSound);
-                    goal1.text = "Found it!";
+                    i = 0;
                     break;
                 }
             case 1:
                 {
-                    goal.text = "This is a toilet. You stinky business on it.";
+                    goal.text = "Ah, Your porcelain throne, sire.";
                     audioSource.PlayOneShot(toiletSound);
-                    goal2.text = "Found it!";
+                    i = 0;
                     break;
                 }
             case 2:
                 {
-                    goal.text = "This is a table. You do tasty business on it.";
+                    goal.text = "This is a table, but I digress.";
                     audioSource.PlayOneShot(tableSound);
-                    goal3.text = "Found it!";
+                    i = 0;
                     break;
                 }
         }
