@@ -22,11 +22,11 @@ public class Movement : MonoBehaviour
         vertical = Input.GetAxis("Vertical");
         if (Input.GetAxis("Horizontal") != 0)
         {
-            playerControl.Move(transform.right * horizontal / 50);
+            playerControl.Move(transform.right * horizontal / 75);
         }
-        else if (Input.GetAxis("Vertical") != 0)
+        if (Input.GetAxis("Vertical") != 0)
         {
-            playerControl.Move(transform.forward * vertical / 50);
+            playerControl.Move(transform.forward * vertical / 75);
         }
     }
 }

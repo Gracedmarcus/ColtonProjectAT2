@@ -18,7 +18,7 @@ public class DoorAnim : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void Interacted(RaycastHit hit)
+    public void Interacted()
     {
         if(anim.isPlaying)
         {

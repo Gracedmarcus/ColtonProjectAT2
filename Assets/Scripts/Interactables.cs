@@ -15,6 +15,7 @@ public class Interactables : MonoBehaviour
     private Camera cam;
     public AudioClip interactSound, toiletSound, bedSound, tableSound;
     public static AudioSource audioSource;
+   
 
     void Start()
     {
@@ -25,8 +26,7 @@ public class Interactables : MonoBehaviour
 
     void Update()
     {
-
-            if (goalObj.gameObject.activeSelf == true)
+        if (goalObj.gameObject.activeSelf == true)
             {
                 StartCoroutine(nameof(Enumerator));
             }
@@ -35,13 +35,9 @@ public class Interactables : MonoBehaviour
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out RaycastHit hit, 2f))
             {
                 Debug.Log(hit.collider.gameObject);
-                if (hit.collider.gameObject.CompareTag("Interactable"))
+                if (hit.collider != false)
                 {
-                    if (hit.collider.gameObject.name == "PFB_DoorDouble")
-                    {
-                        hit.collider.gameObject.SendMessage("Interacted", hit);
-                    }
-                    else
+                    if (hit.collider.gameObject.CompareTag("Interactable"))
                     {
                         Interacted(hit.collider.gameObject);
                     }
@@ -57,17 +53,10 @@ public class Interactables : MonoBehaviour
 
     IEnumerator Enumerator()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         goalObj.gameObject.SetActive(false);
     }
 
-    private void OnDrawGizmos()
-    {
-        if (Input.GetButtonDown("Interact"))
-        {
-            Debug.DrawRay(cam.transform.position, cam.transform.forward * 2f, Color.blue);
-        }
-    }
 
     public void Interacted(GameObject hit)
     {
@@ -85,6 +74,7 @@ public class Interactables : MonoBehaviour
                 {
                     goal.text = "Your dog could sleep on it.";
                     audioSource.PlayOneShot(bedSound);
+                    StartCoroutine(nameof(Enumerator));
                     i = 0;
                     break;
                 }
@@ -92,6 +82,7 @@ public class Interactables : MonoBehaviour
                 {
                     goal.text = "Ah, Your porcelain throne, sire.";
                     audioSource.PlayOneShot(toiletSound);
+                    StartCoroutine(nameof(Enumerator));
                     i = 0;
                     break;
                 }
@@ -99,7 +90,18 @@ public class Interactables : MonoBehaviour
                 {
                     goal.text = "This is a table, but I digress.";
                     audioSource.PlayOneShot(tableSound);
+                    StartCoroutine(nameof(Enumerator));
                     i = 0;
+                    break;
+                }
+            case 3:
+                {
+                    if (hit.TryGetComponent<DoorAnim>(out DoorAnim dooranim))
+                    {                     
+                        dooranim.Interacted();
+                        StartCoroutine(nameof(Enumerator));
+                        i = 0;
+                    }
                     break;
                 }
         }

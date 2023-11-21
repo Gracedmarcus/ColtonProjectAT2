@@ -8,6 +8,7 @@ public class Interact : MonoBehaviour
 {
     private Camera cam;
     public GameObject eventSys;
+    Interactables interactables;
 
     // Start is called before the first frame update
     void Start()
@@ -25,17 +26,9 @@ public class Interact : MonoBehaviour
                 Debug.Log(hit.collider.gameObject);
                 if(hit.collider.gameObject.CompareTag("Interactable"))
                 {
-                   //Interacted(hit.collider.gameObject);
+                   interactables.Interacted(hit.collider.gameObject);
                 }
             }
-        }
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (Input.GetButtonDown("Interact"))
-        {
-            Debug.DrawRay(cam.transform.position, cam.transform.forward * 2f, Color.blue);
         }
     }
 }
